@@ -26,7 +26,7 @@ const addBookHandler = (request, h) => {
     updatedAt,
   };
 
-  if (name === '') {
+  if (!name) {
     const response = h.response({
       status: 'fail',
       message: 'Gagal menambahkan buku. Mohon isi nama buku',
@@ -59,7 +59,7 @@ const addBookHandler = (request, h) => {
   }
 
   const response = h.response({
-    status: 'sucess',
+    status: 'success',
     message: 'Buku berhasil ditambahkan',
     data: {
       bookId: id,
