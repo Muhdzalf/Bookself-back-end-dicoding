@@ -121,7 +121,7 @@ const deleteBookById = (request, h) => {
     books.splice(index, 1);
 
     const response = h.response({
-      status: 'succes',
+      status: 'success',
       message: 'Buku berhasil dihapus',
     });
     response.code(200);
