@@ -70,21 +70,20 @@ const addBookHandler = (request, h) => {
   return response;
 };
 
+// template filtered book response
+const bookMapping = (arr) => arr.map((b) => ({
+  id: b.id,
+  name: b.name,
+  publisher: b.publisher,
+}));
+
 const getAllBookHandler = (request, h) => {
   const { name, reading, finished } = request.query;
-  const filteredBooks = books.map((b) => ({
-    id: b.id,
-    name: b.name,
-    publisher: b.publisher,
-  }));
+  const filteredBooks = bookMapping(books);
 
   if (name) {
     const bookByName = books.filter((b) => b.name.toLowerCase().includes(name.toLowerCase()));
-    const bookByNameList = bookByName.map((b) => ({
-      id: b.id,
-      name: b.name,
-      publisher: b.publisher,
-    }));
+    const bookByNameList = bookMapping(bookByName);
 
     const response = h.response({
       status: 'success',
@@ -99,11 +98,7 @@ const getAllBookHandler = (request, h) => {
   if (reading) {
     const read = reading === '1';
     const bookByRead = books.filter((b) => b.reading === read);
-    const bookByReadList = bookByRead.map((b) => ({
-      id: b.id,
-      name: b.name,
-      publisher: b.publisher,
-    }));
+    const bookByReadList = bookMapping(bookByRead);
 
     const response = h.response({
       status: 'success',
@@ -118,11 +113,7 @@ const getAllBookHandler = (request, h) => {
   if (finished) {
     const finish = finished === '1';
     const finishedBook = books.filter((b) => b.finished === finish);
-    const finishedBookList = finishedBook.map((b) => ({
-      id: b.id,
-      name: b.name,
-      publisher: b.publisher,
-    }));
+    const finishedBookList = bookMapping(finishedBook);
 
     const response = h.response({
       status: 'success',
