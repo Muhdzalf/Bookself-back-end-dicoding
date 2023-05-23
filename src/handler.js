@@ -180,6 +180,7 @@ const editBookByIdHandler = (request, h) => {
       summary,
       publisher,
       pageCount,
+      readPage,
       reading,
       updatedAt,
     };
